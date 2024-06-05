@@ -11,8 +11,9 @@ logging.basicConfig(level=logging.DEBUG)
 # Função para carregar livros a partir do Excel
 def carregar_livros():
     try:
-        df = pd.read_excel('livros.xlsx')
-        logging.debug(f"Colunas do Excel: {df.columns.tolist()}")
+        colunas = ['ID', 'Numero_do_Livro', 'Nome', 'Editora', 'Autor', 'Sinopse', 'Disponibilidade', 'Detalhes']
+        df = pd.read_excel('livros.xlsx', header=None, names=colunas)
+        logging.debug(f"Colunas definidas manualmente: {colunas}")
         logging.debug(f"Primeiras linhas do DataFrame:\n{df.head()}")
         livros = df.to_dict(orient='records')
         logging.debug(f"Livros carregados: {livros}")
@@ -71,7 +72,7 @@ def reservar():
 
         return redirect(url_for('index'))
     except Exception as e:
-        logging.error(f"Erro ao processar reserva: sta{e}")
+        logging.error(f"Erro ao processar reserva: {e}")
         return "Ocorreu um erro ao processar a reserva.", 500
 
 if __name__ == '__main__':
