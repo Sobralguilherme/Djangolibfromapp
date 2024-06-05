@@ -71,7 +71,7 @@ def reservar():
 
         return redirect(url_for('index'))
     except Exception as e:
-        logging.error(f"Erro ao processar reserva: {e}")
+        logging.error(f"Erro ao processar reserva: sta{e}")
         return "Ocorreu um erro ao processar a reserva.", 500
 
 if __name__ == '__main__':

@@ -1,0 +1,28 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservar Livro</title>
+</head>
+<body>
+    <h1>Reservar Livro</h1>
+    <form action="{{ url_for('reservar') }}" method="post">
+        <label for="aluno">Nome do Aluno:</label>
+        <input type="text" id="aluno" name="aluno" required>
+        <label for="livro">Selecione o Livro:</label>
+        <select id="livro" name="livro" required>
+            {% for livro in livros %}
+                <option value="{{ livro.Nome }}">{{ livro.Nome }} - {{ livro.Autor }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Reservar</button>
+    </form>
+    <h2>Livros Disponíveis</h2>
+    <ul>
+        {% for livro in livros %}
+            <li>{{ livro.Nome }} por {{ livro.Autor }} - Disponibilidade: {{ livro.Disponibilidade }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
